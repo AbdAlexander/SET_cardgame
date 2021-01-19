@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- A két .js állmoány kizárólag a megjelenítéshez és az esztétikus kialakításhoz van használva, a játék megvalósításához nem!-->
+    <title>Set</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="jumbotron text-center">
+            <h1>Set kártyajáték</h1>
+            <p>Olvasd el a szabályzatot, állítsd be a neked megfelelő beállításokat és indulhat a játék!</p>
+        </div>
+    </div>
+
+    <div class="MainWindow" style="display:block">
+        <div class="container-fluid">
+            <h1 id="rulesTitle">Játékszabályzat 🔼</h1>
+            <div class="rules" style="display:none">
+                <p>A játék célja hogy 3 kártyából álló SET-eket találjunk meg az asztalra lehelyezett 12 kártyából. Minden kártyának 4 tulajdonsága van, amik a következők:</p>
+                <ul>
+                    <li><strong>FORMA:</strong> ovális, hullámos, rombusz</li>
+                    <li><strong>SZÍN:</strong> piros, zöld, lila</li>
+                    <li><strong>SZÁM:</strong> 1, 2 vagy 3 forma</li>
+                    <li><strong>TARTALOM:</strong> tömör, csíkos, üres</li>
+                </ul>
+                <p>Egy SET 3 kártyából áll, amiben minden jellemzőt külön megvizsgálva, azoknak</p>
+                <ul>
+                    <li>vagy minden kártyán azonosnak,</li>
+                    <li>vagy minden kártyán különbözőnek kell lennie.</li>
+                </ul>
+                <p>
+                    Ennek a szabálynak MINDEN tulajdonság esetében meg kell felelnie a kiválasztott három lapnak. Más szavakkal: a forma vagy azononos mindhárom kártyán, vagy mindegyiken más; a szín vagy azonos mindhárom kártyán, vagy mindegyiken különböző, stb... Fordítva:
+                    ha a lapokon egy tulajdonságot vizsgálva 2 azonos és 1 különböző típus látható, akkor az nem SET. Például, ha 2 lap piros, 1 pedig lila, akkor az nem SET.
+                </p>
+                <a href="https://fejlesztojatekvilag.hu/uploaded/set_magyar_szabaly.pdf" target="_blank">A játék részletes leírása itt található meg</a>
+            </div>
+
+            <h1 id="settingsTitle">Játékbeállítások 🔽</h1>
+            <div class="settings" style="display:block">
+                <p><strong>Játékosok számának a beállítása. <i>Legalább 1, legfeljebb 10 játékos vehet részt a játékban!</i></strong></p>
+                <div class="col-xs-2">
+                    <input class="form-control" id="playersSumInput" type="number" min=1 max=10 value=1>
+                </div>
+                <button type="button" class="btn btn-primary" id="playerSettingButton">Játékosok beállításai</button>
+                <div class="playerSettingsDiv" style="position:relative; left: 30px;"></div>
+                <div class="alert"></div>
+
+                <p><strong>Játékmód beállítása</strong></p>
+                <div class="gameModeChooser" style="position:relative; left: 30px;">
+                    <div class="radio">
+                        <label><input type="radio" name="gameModeRadio" value="Practice" id="Practice" checked>Gyakorló: ekkor az egyéb beállítások szabadon paraméterezhetőek, és 1 személyes játéknál nincs időmérés.</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="gameModeRadio" value="Competition" id="Competition">Verseny: ekkor az egyéb beállítások nem jelennek meg, és 1 személyes játékban van időmérés.</label>
+                    </div>
+                </div>
+
+                <p><strong>Játék nehézségének beállítása:</strong></p>
+                <div class="gameModeDifficultyChooser" style="position:relative; left: 30px;">
+                    <div class="radio">
+                        <label><input type="radio" name="gameModeDifficulty" value="Easy" id="EasyDifficulty">Könnyű: ekkor a kártyák 3 tulajdonsággal rendelkeznek, és összesen 27 kártyalap lesz</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="gameModeDifficulty" value="Normal" id="NormalDifficulty" checked>Normál: ekkor a kártyák 4 tulajdonsággal rendelkeznek, és összesen 81 kártyalap lesz.</label>
+                    </div>
+                </div>
+
+                <p><strong>Egyéb beállítások</strong></p>
+                <div class="helperChooser" style="position:relative; left: 30px; display:block">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="cb1">Segítő gomb beszúrása a játékba, mellyel rendszer megmondja, hogy van-e SET a leosztásban</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="cb2">Segítő gomb beszúrása a játékba, mellyel rendszer megmutat egy SET-et a leosztásban.</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="cb3">Plusz 3 lapos kiegészítés egy külön gombra menjen (Alapértelmezetten automatikus)</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <button type="button " class="btn btn-success " id="start">Játék kezdése</button>
+        </div>
+    </div>
+    <div class="GameWindow" style="display:none">
+
+    </div>
+
+
+
+    <script src="index.js "></script>
+</body>
+
+</html>
